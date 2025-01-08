@@ -1,0 +1,14 @@
+{
+    "configurations": [
+      {
+        "type": "lldb",
+        "request": "launch",
+        "name": "lldbdbg",
+        "program": "${fileDirname}/${fileBasenameNoExtension}",
+        "args": [],
+        "cwd": "${workspaceFolder}",
+        "preLaunchTask": "Build active file"
+    }
+    ],
+    "version": "2.0.0"
+  }
