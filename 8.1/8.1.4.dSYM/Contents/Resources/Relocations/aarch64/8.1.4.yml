@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/liz/Desktop/code/qingwen/8.1/8.1.4'
+relocations:     []
+...
