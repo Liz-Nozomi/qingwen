@@ -7,7 +7,7 @@ void binsearch(int n){
     int left=0,right=n-1;
     while(left <= right){
         int mid = left + (right - left)/2;
-        if(nums[mid] == 1){
+        if(nums[mid] %2 == 0){
             right = mid-1;
             if(mid < idx or idx == -1)idx=mid;
         }else left = mid+1;
