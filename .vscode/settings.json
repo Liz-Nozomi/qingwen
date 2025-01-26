@@ -9,6 +9,7 @@
         "list": "cpp",
         "cstdio": "cpp",
         "unordered_set": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "iosfwd": "cpp"
     }
 }
