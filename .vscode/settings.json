@@ -10,6 +10,17 @@
         "cstdio": "cpp",
         "unordered_set": "cpp",
         "queue": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "__node_handle": "cpp",
+        "array": "cpp",
+        "forward_list": "cpp",
+        "map": "cpp",
+        "regex": "cpp",
+        "set": "cpp",
+        "span": "cpp",
+        "stack": "cpp",
+        "string_view": "cpp",
+        "unordered_map": "cpp",
+        "ios": "cpp"
     }
 }
