@@ -1,69 +1,47 @@
-//ybb
 #include <bits/stdc++.h>
 using namespace std;
 
-struct file{
-    string prefix;
-    string name;
-    string after;
+struct firstthree{
+    vector<int> f3;
 };
 
-file getFileName(const string& s) {
-    file f;
-    size_t lastSlash = s.find_last_of('/');
-
-    if (lastSlash == s.npos) {
-        f.prefix = "";
-        f.name = s;
-        f.after = "";
-    } else {
-        f.prefix = s.substr(0, lastSlash + 1);
-        std::string fileName = s.substr(lastSlash + 1);
-        size_t lastPoint = fileName.find_last_of('.');
-
-        if (lastPoint == std::string::npos) {
-            f.name = fileName;
-            f.after = "";
-        } else {
-            f.name = fileName.substr(0, lastPoint);
-            f.after = fileName.substr(lastPoint + 1);
-        }
-    }
-
-    return f;
-}
-
 int main(){
-
-
-    int n;
-    cin>>n;
-    vector<file> fs(n);
-    
-    for(int i=0;i<n;i++){
-        string s;
-        cin>>s;
-        fs[i] = getFileName(s);
-    }
-
-    unordered_map<string,unordered_map<string,unordered_map<string,int> > > filesys;
-    for (const auto &File : fs) {
-
-        string name = File.name;
-        string after = File.after;
-        string prefix = File.prefix;
-
-        auto &count = filesys[prefix][after][name];
-
-        if (count == 0) {
-            count = 2;
-        } else {
-            // 如果文件名已经存在，生成新名称
-            int version = count;
-            string newName = name + "(" + to_string(version) + ")";
-            filesys[prefix][after][newName] = 1;
-            count++;
+    int n,m;//n 颜色数量 m圆柱数量
+    //颜色数量用来哈希。
+    vector< queue<int> > bottles(m);
+    int spherecount = 0;
+    for(int i=0;i<m;i++){
+        int cnt;
+        cin>>cnt;
+        spherecount += cnt;
+        queue<int> tq;
+        for(int j=0;j<cnt;j++){
+            int t;
+            cin>>t;
+            tq.push(t);
         }
+        bottles[i] = tq;
     }
-    //cout<<filesys["/a/"]["txt"]["file"];
+    
+    //for one round
+            vector<firstthree> hashmap(n+1);
+            set<int> colors_enough_3;
+            for(int i=0;i<m;i++){
+                if(!bottles[i].empty()){//bottles[i].front() 顶颜色
+                    //hashmap[上面一坨] 存着前三个这个颜色的位置
+                    if(hashmap[bottles[i].front()].f3.size() < 3){
+                        hashmap[bottles[i].front()].f3.push_back(i);
+                        if(hashmap[bottles[i].front()].f3.size() == 3){
+                            colors_enough_3.insert(bottles[i].front());
+                        }
+                    }
+                }
+            }
+            int selectedcolor = *colors_enough_3.begin();
+            bottles[hashmap[selectedcolor].f3[0]].pop();
+            bottles[hashmap[selectedcolor].f3[1]].pop();
+            bottles[hashmap[selectedcolor].f3[2]].pop();
+
+            cout<<selectedcolor;
+     
 }
